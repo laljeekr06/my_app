@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/profile_activity_parent_layout">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_submit_button"
+        android:layout_alignParentBottom="true"
+        android:text="submit"
+        android:textAllCaps="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#fff"/>
+
+    <ScrollView
+        android:id="@+id/profile_activity_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/profile_submit_button">
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:isScrollContainer="true"
+    tools:context=".ProfileActivity">
+
+    <!--Consumer No Layout-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/phone_no_view"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone_no_text"
+            android:text="Phone No"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phone_no_field"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+
+    </LinearLayout>
+
+    <!--Email-->
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/email_text_view"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_text"
+        android:text="Email"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textStyle="bold"
+        android:layout_marginBottom="6dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_field"
+        android:inputType="textEmailAddress"
+        android:layout_marginStart="8dp"
+        android:maxLines="1"
+        />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumer_no_view"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/consumer_no_text"
+            android:text="Consumer No"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/consumer_no_field"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            />
+
+    </LinearLayout>
+    <!--Name-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/consumer_name_view"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/consumer_name_text"
+            android:text="Consumer Name"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/consumer_first_name_field"
+            android:hint="First Name"
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/consumer_middle_name_field"
+            android:layout_marginStart="8dp"
+            android:hint="Middle Name"
+            android:maxLines="1"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/consumer_last_name_field"
+            android:layout_marginStart="8dp"
+            android:hint="Last Name"
+            android:maxLines="1"
+            />
+
+    </LinearLayout>
+
+    <!--Address-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/address_view"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/address_text"
+            android:text="Address"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address_flat_no_field"
+            android:hint="Flat No. / Building No."
+            android:layout_marginStart="8dp"
+            android:maxLines="1"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address_street_name_field"
+            android:layout_marginStart="8dp"
+            android:hint="Street Name"
+            android:maxLines="1"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address_city_name_field"
+            android:layout_marginStart="8dp"
+            android:hint="City"
+            android:maxLines="1"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/address_state_pincode_layout"
+            android:orientation="horizontal"
+            android:layout_marginStart="8dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/address_state_name_field"
+                android:hint="state"
+                android:inputType="text"
+                android:maxLines="1"
+                android:maxLength="26"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/address_pincode_field"
+                android:hint="PINCODE"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="6"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Connection Type Domestic/Commercial-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/connection_type_view"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/connection_type_text"
+            android:text="Connection Type"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            android:layout_marginEnd="22dp"
+            />
+
+        <ToggleButton
+        android:id="@+id/connection_type_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textOff="Domestic"
+        android:textOn="Commercial"
+        android:text="Connection Type"/>
+
+    </LinearLayout>
+
+    <!-- Gender Spinner-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gender_view"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gender_text"
+            android:text="Gender"
+            android:textAppearance="?android:attr/textAppearanceListItemSmall"
+            android:textStyle="bold"
+            android:layout_marginBottom="6dp"
+            android:layout_marginEnd="22dp"
+            />
+
+        <Spinner
+            android:id="@+id/gender_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

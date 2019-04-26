@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "55335369446",
+    "firebase_url": "https://bookkar-7f23b.firebaseio.com",
+    "project_id": "bookkar-7f23b",
+    "storage_bucket": "bookkar-7f23b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:55335369446:android:01f7928064d7137c",
+        "android_client_info": {
+          "package_name": "com.example.bookkar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "55335369446-nf1fmscjd3qr6efthoer9r638r6kfjtv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bookkar",
+            "certificate_hash": "4b8a51bcb389f64db27942418522e060e749ccba"
+          }
+        },
+        {
+          "client_id": "55335369446-tgb4js2cftc0bcgj5v4hgr6dfvm0v0hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6Odqz8UMX7u0i61qVe3DtgxjQo54kmmU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "55335369446-tgb4js2cftc0bcgj5v4hgr6dfvm0v0hq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

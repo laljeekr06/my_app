@@ -36,7 +36,7 @@
             android:id="@+id/nav_header_consumer_no"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:text="983246264239"/>
+            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
             android:id="@+id/nav_header_consumer_name"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:text="Laljee Kumar"/>
+            />
 
     </LinearLayout>
 </LinearLayout>

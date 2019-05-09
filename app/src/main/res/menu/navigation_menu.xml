@@ -2,17 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-    <item android:id="@+id/account"
-        android:title="My Account" />
+    <item android:id="@+id/profile"
+        android:title="My Profile" />
 
-    <item android:id="@+id/settings"
-        android:title="Settings"/>
-
-    <item android:id="@+id/mycart"
-        android:title="My Cart"/>
-
-    <item android:id="@+id/logout"
-        android:title="Log Out"/>
+    <item android:id="@+id/booking_history"
+        android:title="Booking History"/>
 
     </group>
 </menu>

@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/complete_layout"
+    tools:ignore="InvalidId">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -26,7 +28,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress"
+        android:scrollHorizontally="false"
+        android:maxLines="1"
+        android:imeOptions="actionNext"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -37,7 +42,21 @@
         android:inputType="textPassword"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:maxLines="1"
+        android:scrollHorizontally="false"
+        android:imeOptions="actionDone"/>
+
+    <ProgressBar
+        android:id="@+id/sign_up_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:indeterminateTint="@color/colorAccent"
+        android:visibility="gone"
+        android:layout_marginBottom="28dp"/>
 
     <TextView
         android:layout_width="wrap_content"

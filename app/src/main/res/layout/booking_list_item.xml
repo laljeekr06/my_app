@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#48CCCD"
+    android:elevation="8dp"
+    android:padding="8dp"
+    >
+    <ImageView
+        android:id="@+id/booking_status_image"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/processing"
+        android:scaleType="fitCenter"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:background="@drawable/image_border"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+    <TextView
+        android:id="@+id/booking_date"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:textColor="@color/design_default_color_primary"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:text="Booking Date"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:id="@+id/delivery_date"
+        android:textColor="@color/design_default_color_primary"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Delivery Date"
+        />
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/booking_status"
+        android:text="PENDING"
+        android:textColor="#F62817"
+        android:textAppearance="?android:attr/textAppearanceListItem"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+
+        />
+
+</LinearLayout>
+</LinearLayout>

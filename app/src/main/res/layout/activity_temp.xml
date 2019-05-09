@@ -30,6 +30,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="32dp"
         android:indeterminateOnly="true"
+        android:indeterminateTint="@color/colorAccent"
        />
 
     <TextView
@@ -42,7 +43,8 @@
         android:layout_above="@id/temp_progress_bar"
         android:layout_centerHorizontal="true"
         android:textSize="22sp"
-        android:layout_margin="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,10 +53,11 @@
         android:textStyle="bold"
         android:text=" ..."
         android:textColor="@color/colorPrimaryDark"
-        android:layout_toRightOf="@id/temp_progress_bar"
+        android:layout_toRightOf="@id/loading_text"
         android:layout_above="@id/temp_progress_bar"
-        android:layout_centerHorizontal="true"
         android:textSize="22sp"
-        android:layout_margin="16dp"/>
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        />
 
 </RelativeLayout>

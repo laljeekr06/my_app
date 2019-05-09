@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Booking {
     private String bookingId;
-    private Date bookingDate;
-    private String customerId;
-    private Date deliveryDate;
+    private String bookingDate;
+    private String consumerId;
+    private String deliveryDate;
     private int amount;
     private String booking_status;
 
@@ -14,10 +14,10 @@ public class Booking {
 
     }
 
-    public Booking(String bookingId, Date bookingDate, String customerId, Date deliveryDate, int amount, String booking_status) {
+    public Booking(String bookingId, String bookingDate, String consumerId, String deliveryDate, int amount, String booking_status) {
         this.bookingId = bookingId;
         this.bookingDate = bookingDate;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.deliveryDate = deliveryDate;
         this.amount = amount;
         this.booking_status = booking_status;
@@ -31,27 +31,27 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public Date getBookingDate() {
+    public String getBookingDate() {
         return bookingDate;
     }
 
-    public void setBookingDate(Date bookingDate) {
+    public void setBookingDate(String bookingDate) {
         this.bookingDate = bookingDate;
     }
 
-    public String getCustomerId() {
-        return customerId;
+    public String getConsumerId() {
+        return consumerId;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setConsumerId(String consumerId) {
+        this.consumerId = consumerId;
     }
 
-    public Date getDeliveryDate() {
+    public String getDeliveryDate() {
         return deliveryDate;
     }
 
-    public void setDeliveryDate(Date deliveryDate) {
+    public void setDeliveryDate(String deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
 

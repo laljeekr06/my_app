@@ -119,6 +119,10 @@ class Address{
     private String state;
     private String street_name;
 
+    public Address(){
+
+    }
+
     public Address(String city,String flat_no, String pincode, String state, String street_name) {
         this.flat_no = flat_no;
         this.street_name = street_name;

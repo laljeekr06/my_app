@@ -1,180 +1,191 @@
 package com.example.bookkar;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.service.autofill.UserData;
-import android.text.TextUtils;
+import android.provider.ContactsContract;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
+public class ProfileActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener , View.OnClickListener {
-
-    private EditText phone_no;
+    private TextView consumer_no;
+    private TextView name_field;
     private EditText email;
-    private EditText consumer_no;
-    private EditText first_name;
-    private EditText middle_name;
-    private EditText last_name;
-    private EditText flat_no;
-    private EditText street_name;
+    private EditText phone;
+    private EditText Gender;
+    private EditText flat;
+    private EditText street;
     private EditText city;
     private EditText state;
     private EditText pincode;
-    private ToggleButton connection_type;
-    private TextView submit_button;
 
-    private String user_id;
-    private String phone_no_text;
-    private String email_text;
-    private String consumer_no_text;
-    private String first_name_text;
-    private String middle_name_text;
-    private String last_name_text;
-    private String flat_no_text;
-    private String street_name_text;
-    private String city_text;
-    private String state_text;
-    private String pincode_text;
-    private String connection_type_text;
-    private String gender_text;
-
-    private DatabaseReference UserDatabase;
+    private FirebaseDatabase myDatabase;
+    private DatabaseReference userDatabase;
+    private DatabaseReference bookingDatabase;
     private FirebaseAuth mAuth;
+    private FirebaseUser cur_user;
+
+    private TextView deleteButton;
+    private ImageView user_details_edit;
+    private ImageView personal_details_edit;
+    private ImageView address_details_edit;
+    private ImageView nominee_details_edit;
+
+    private String cur_email;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        UserDatabase = FirebaseDatabase.getInstance().getReference();
+        consumer_no = findViewById(R.id.user_profile_consumer_no);
+        name_field = findViewById(R.id.user_profile_name);
+        email = findViewById(R.id.profile_email_text);
+        phone = findViewById(R.id.profile_phone_no_text);
+        Gender = findViewById(R.id.profile_gender_text);
+        flat = findViewById(R.id.profile_flat_no_text);
+        street = findViewById(R.id.profile_street_no_text);
+        city = findViewById(R.id.profile_city_text);
+        state = findViewById(R.id.profile_state_text);
+        pincode = findViewById(R.id.profile_pincode_text);
+        deleteButton = findViewById(R.id.profile_delete_button);
+        user_details_edit = findViewById(R.id.edit_user_details_button);
+        personal_details_edit = findViewById(R.id.edit_personal_details_button);
+        address_details_edit = findViewById(R.id.edit_address_details_button);
+        nominee_details_edit = findViewById(R.id.edit_nominee_details_button);
+
         mAuth = FirebaseAuth.getInstance();
+        myDatabase = FirebaseDatabase.getInstance();
+        userDatabase = myDatabase.getReference("users");
+        bookingDatabase = myDatabase.getReference("bookings");
+        cur_user = mAuth.getCurrentUser();
+        cur_email = cur_user.getEmail();
 
-        Spinner genderSpinner =  findViewById(R.id.gender_spinner);
-        genderSpinner.setOnItemSelectedListener(this);
 
-        //Creating the ArrayAdapter instance having the gender list
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.gender,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //Setting the ArrayAdapter data on the Spinner
-        genderSpinner.setAdapter(adapter);
+        deleteButton.setOnClickListener(this);
+        user_details_edit.setOnClickListener(this);
+        personal_details_edit.setOnClickListener(this);
+        address_details_edit.setOnClickListener(this);
+        nominee_details_edit.setOnClickListener(this);
 
-        consumer_no = findViewById(R.id.consumer_no_field);
-        email = findViewById(R.id.email_field);
-        phone_no = findViewById(R.id.phone_no_field);
-        first_name = findViewById(R.id.consumer_first_name_field);
-        middle_name = findViewById(R.id.consumer_middle_name_field);
-        last_name = findViewById(R.id.consumer_last_name_field);
-        flat_no = findViewById(R.id.address_flat_no_field);
-        street_name = findViewById(R.id.address_street_name_field);
-        city = findViewById(R.id.address_city_name_field);
-        state = findViewById(R.id.address_state_name_field);
-        pincode = findViewById(R.id.address_pincode_field);
-        connection_type = findViewById(R.id.connection_type_toggle);
+        userDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot obj : dataSnapshot.getChildren()) {
 
-        submit_button = findViewById(R.id.profile_submit_button);
-        submit_button.setOnClickListener(this);
+                    if (obj.child("email").getValue().toString().equals(cur_email)) {
+                        user = obj.getValue(User.class);
+                        break;
+                    }
+                }
 
-        email.setText(mAuth.getCurrentUser().getEmail());
-        email.setEnabled(false);
+                consumer_no.setText(user.getConsumer_no());
+                name_field.setText(user.getFirst_name() + " " + user.getLast_name());
+                email.setText(user.getEmail());
+                phone.setText(user.getPhone_no());
+                Gender.setText(user.getGender());
+                flat.setText(user.getAddress().getFlat_no());
+                street.setText(user.getAddress().getStreet_name());
+                city.setText(user.getAddress().getCity());
+                state.setText(user.getAddress().getState());
+                pincode.setText(user.getAddress().getPincode());
+            }
 
-        String number = generateConsumerNo();
-        consumer_no.setText(number);
-        consumer_no.setEnabled(false);
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ProfileActivity.this,"Data Fetching Failed..\n Try Again After some time",Toast.LENGTH_LONG).show();
+            }
+        });
 
-    }
-
-    private String generateConsumerNo() {
-        Long tslong = System.currentTimeMillis()/1000;
-        String ts =  tslong.toString();
-
-        Calendar c = Calendar.getInstance();
-        int month = c.get(Calendar.MONTH);
-
-        if(month < 9){
-            return "BKKR0" + Integer.toString(month+1) + ts;
-        }
-        else{
-            return "BKKR" + Integer.toString(month+1) + ts;
-        }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //Toast.makeText(ProfileActivity.this,parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT).show();
-        gender_text = parent.getItemAtPosition(position).toString();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        gender_text = "other";
+//        Toast.makeText(ProfileActivity.this,"You have entered profile section",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.profile_submit_button){
-            submitProfile();
+        if(v.getId() == R.id.edit_user_details_button){
+
+        }
+        if(v.getId() == R.id.edit_personal_details_button){
+
+        }
+        if(v.getId() == R.id.edit_address_details_button){
+
+        }
+        if(v.getId() == R.id.edit_nominee_details_button){
+
+        }
+        if(v.getId() == R.id.profile_delete_button){
+
+            String key_email = cur_email.replace('-','.');
+
+            deleteBookings(key_email);
+            deleteUserDetails(key_email);
+            deleteUser();
         }
     }
 
-    private void submitProfile() {
-            phone_no_text = phone_no.getText().toString();
-            consumer_no_text = consumer_no.getText().toString();
-            email_text = email.getText().toString();
-            first_name_text = first_name.getText().toString();
-            middle_name_text = middle_name.getText().toString();
-            last_name_text = last_name.getText().toString();
-            flat_no_text = flat_no.getText().toString();
-            street_name_text = street_name.getText().toString();
-            city_text = city.getText().toString();
-            state_text = state.getText().toString();
-            pincode_text = pincode.getText().toString();
-            connection_type_text = connection_type.getText().toString();
+    public void deleteBookings(String key_id){
+        bookingDatabase.child(key_id).removeValue();
+    }
 
-            if(TextUtils.isEmpty(phone_no_text) ||
-                    TextUtils.isEmpty(consumer_no_text) ||
-                    TextUtils.isEmpty(first_name_text) ||
-                    TextUtils.isEmpty(last_name_text) ||
-                    TextUtils.isEmpty(flat_no_text) ||
-                    TextUtils.isEmpty(street_name_text) ||
-                    TextUtils.isEmpty(city_text) ||
-                    TextUtils.isEmpty(state_text) ||
-                    TextUtils.isEmpty(pincode_text))
-                    {
-                        Toast.makeText(ProfileActivity.this,">> Fields Missing ..!",Toast.LENGTH_LONG).show();
-            }
+    public void deleteUserDetails(String key_id){
+        userDatabase.child(key_id).removeValue();
+    }
 
-            else{
-               // Toast.makeText(ProfileActivity.this,"User Activity will be created",Toast.LENGTH_SHORT).show();
+    public void deleteUser(){
 
-                user_id = UserDatabase.push().getKey();
+        AlertDialog.Builder dialog = new AlertDialog.Builder(ProfileActivity.this);
 
-                Toast.makeText(ProfileActivity.this,"User ID created :  " + user_id ,Toast.LENGTH_SHORT).show();
-
-
-                Address address = new Address(city_text,flat_no_text,pincode_text,state_text,street_name_text);
-                User newUser = new User(address,connection_type_text,consumer_no_text,email_text,first_name_text,gender_text,last_name_text,middle_name_text,phone_no_text,user_id);
-
-                UserDatabase.child("users").child(user_id).setValue(newUser);
-
-                Intent intent = new Intent(ProfileActivity.this,WelcomeActivity.class);
-               // intent.putExtra("consumer_no",consumer_no_text);
-             //   Toast.makeText(ProfileActivity.this,consumer_no_text,Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+        dialog.setTitle("Are you Sure ?");
+        dialog.setMessage("This will result in deleting all your information stored within this application"
+                + "all informations will be removed from the system and you will not be able to access the application further"
+                + "To continue , press delete or to withdraw press cancel");
+        dialog.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                cur_user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(ProfileActivity.this,"Account Deleted",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(ProfileActivity.this,MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(ProfileActivity.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
 
             }
+        });
+
+        dialog.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
     }
 }

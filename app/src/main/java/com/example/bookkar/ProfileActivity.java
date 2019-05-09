@@ -136,10 +136,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(v.getId() == R.id.profile_delete_button){
 
             String key_email = cur_email.replace('-','.');
-
+//            Toast.makeText(ProfileActivity.this,"User will be deleted :" + key_email ,Toast.LENGTH_SHORT).show();
             deleteBookings(key_email);
-            deleteUserDetails(key_email);
-            deleteUser();
+//            deleteUserDetails(key_email);
+//            deleteUser();
         }
     }
 

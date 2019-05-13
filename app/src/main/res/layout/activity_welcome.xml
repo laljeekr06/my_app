@@ -52,14 +52,24 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimaryDark"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/welcome_text"
-            android:layout_centerInParent="true"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:text="Welcome to the BookKar Main Page"/>
+
+
+        <ViewFlipper
+            android:id="@+id/main_activity_view_flipper"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/toolbar"
+            android:layout_margin="8dp"/>
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/welcome_text"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:textSize="22sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:text="Welcome to the BookKar Main Page"/>-->
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/new_booking_fab"

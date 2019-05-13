@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileActivity"
+    android:id="@+id/profile_container"
     android:background="#CBF2FB"
     android:orientation="vertical">
 
@@ -65,6 +66,15 @@
         android:textStyle="bold"
         android:textColor="#FEA"
         />
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_delete_progress_bar"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:layout_alignParentBottom="true"
+        android:layout_above="@id/profile_delete_button"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
 
     <ScrollView
         android:id="@+id/profile_scroll_content"
@@ -77,7 +87,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginLeft="8dp">
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="16dp"
+            android:paddingBottom="16dp">
 
             <LinearLayout
                 android:id="@+id/profile_content_layout"
@@ -105,13 +117,6 @@
                     android:layout_marginTop="8dp"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     />
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edit_user_details_button"
-                    android:src="@drawable/edit"
-                    android:layout_marginRight="12dp"
-                    android:layout_gravity="center"/>
 
                 </LinearLayout>
 
@@ -310,14 +315,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="Aadhar No"
-                        android:maxLines="1"
-                        android:scrollHorizontally="false"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:inputType="text"
                         android:background="@android:color/transparent"
                         android:enabled="false"
-                        />
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        android:text="Aadhar No"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
 
@@ -368,9 +372,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:text="DOB"
-                        android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceSmall"
-                        />
+                        android:textStyle="bold" />
 
 
                     <EditText
@@ -378,14 +381,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="DOB"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:scrollHorizontally="false"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:inputType="text"
-                        android:enabled="false"
-                        android:background="@android:color/transparent"
-                        />
+                        android:text="DOB"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -446,14 +448,13 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="flat no"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
                         android:inputType="text"
                         android:maxLines="1"
                         android:scrollHorizontally="false"
-                        android:background="@android:color/transparent"
-                        android:enabled="false"
-                        />
+                        android:text="flat no"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
 
@@ -479,12 +480,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="Street name"
-                        android:maxLines="1"
-                        android:scrollHorizontally="false"
-                        android:inputType="text"
                         android:background="@android:color/transparent"
                         android:enabled="false"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        android:text="Street name"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
@@ -511,12 +512,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="City"
-                        android:inputType="text"
                         android:background="@android:color/transparent"
                         android:enabled="false"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:scrollHorizontally="false"
+                        android:text="City"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
@@ -543,12 +544,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="state"
+                        android:background="@android:color/transparent"
                         android:enabled="false"
                         android:inputType="text"
                         android:maxLines="1"
                         android:scrollHorizontally="false"
-                        android:background="@android:color/transparent"
+                        android:text="state"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
@@ -575,12 +576,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="pincode"
-                        android:inputType="text"
                         android:background="@android:color/transparent"
                         android:enabled="false"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:scrollHorizontally="false"
+                        android:text="pincode"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                 </LinearLayout>
@@ -685,7 +686,282 @@
                         android:scrollHorizontally="false"
                         />
 
+
+
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Age"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_nominee_age_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="31"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Gender"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_nominee_gender_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="M"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_bank_details_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp"
+                android:elevation="8dp"
+                >
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/user_bank_details_tag"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="Bank details"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        />
+
+                    <ImageView
+                        android:id="@+id/edit_bank_details_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="12dp"
+                        android:src="@drawable/edit" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Bank Name"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_bank_name_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Bank of India"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        android:background="@android:color/transparent"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Bank Branch"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_bank_branch_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="KHILSAR"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Account No"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_bank_acc_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="8273402418749"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="IFSC Code"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_bank_ifsc_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="BOI29347"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="Pancard No"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/profile_bank_pancard_text"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="238472943123"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:inputType="text"
+                        android:enabled="false"
+                        android:background="@android:color/transparent"
+                        android:maxLines="1"
+                        android:scrollHorizontally="false"
+                        />
+
+                </LinearLayout>
+
             </LinearLayout>
 
 

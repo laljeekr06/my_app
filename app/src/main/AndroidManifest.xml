@@ -14,10 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity android:name=".BookingHistoryActivity"/>
+
         <activity android:name=".ProfileActivity"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:windowSoftInputMode="stateHidden"/>
+
         <activity android:name=".SubmitProfileActivity"/>
+
         <activity
             android:name=".TempActivity"
             android:noHistory="true">
@@ -27,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".WelcomeActivity" />
+
         <activity
             android:name=".MainActivity"
             android:noHistory="true"/>

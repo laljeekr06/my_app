@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -63,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                        event.getAction() == KeyEvent.ACTION_DOWN ||
                        event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
 
-                   hideKeyboard(MainActivity.this);
                    startSignIn(email.getText().toString(),password.getText().toString());
                }
                return true;
@@ -106,24 +106,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void startSignIn(String email_text,String password_text){
+        hideKeyboard(this);
+        sign_progress.setVisibility(View.VISIBLE);
+        primary_sign_in.setVisibility(View.GONE);
+        alternate_sign_in.setVisibility(View.GONE);
+
         if (Sign_In_Active) {
-            // TODO : implement sign in method here
-            sign_progress.setVisibility(View.VISIBLE);
-            primary_sign_in.setVisibility(View.GONE);
-            alternate_sign_in.setVisibility(View.GONE);
 
             mAuth.signInWithEmailAndPassword(email_text,password_text)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            sign_progress.setVisibility(View.GONE);
+
                             if(task.isSuccessful()){
                                 // Open Profile Activity here
-                                sign_progress.setVisibility(View.INVISIBLE);
                                 startActivity(new Intent(MainActivity.this,WelcomeActivity.class));
 
                             }
                             else{
-                                Toast.makeText(MainActivity.this,"Sign In Failed",Toast.LENGTH_SHORT).show();
+                                String msg = task.getException().getMessage();
+                                Log.i("signUp",msg);
+                                primary_sign_in.setVisibility(View.VISIBLE);
+                                alternate_sign_in.setVisibility(View.VISIBLE);
+                                Toast.makeText(MainActivity.this,"Sign In Failed : \n" +msg,Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -134,14 +140,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            sign_progress.setVisibility(View.GONE);
                             if (task.isSuccessful()) {
                                 // Sign In successful , open the profile activity here
                                 // startActivity(new Intent(CreateProfileActivity.this,WelcomeActivity.class));
-                                sign_progress.setVisibility(View.INVISIBLE);
                                 startActivity(new Intent(MainActivity.this, SubmitProfileActivity.class));
 
                             } else {
-                                Toast.makeText(MainActivity.this, "Sign Up Failed", Toast.LENGTH_SHORT).show();
+                                String msg = task.getException().getMessage();
+                                primary_sign_in.setVisibility(View.VISIBLE);
+                                alternate_sign_in.setVisibility(View.VISIBLE);
+                                Log.i("signUp",msg);
+                                Toast.makeText(MainActivity.this, "Sign Up Failed :" + msg, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

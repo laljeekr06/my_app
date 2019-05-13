@@ -1,19 +1,24 @@
 package com.example.bookkar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -30,9 +35,13 @@ public class SubmitProfileActivity extends AppCompatActivity implements AdapterV
     private EditText last_name;
     private EditText flat_no;
     private EditText street_name;
+//    private EditText Dob;
     private EditText city;
     private EditText state;
     private EditText pincode;
+//    private EditText aadhar;
+//    private EditText profession;
+//    private EditText citizen;
     private ToggleButton connection_type;
     private TextView submit_button;
 
@@ -50,6 +59,12 @@ public class SubmitProfileActivity extends AppCompatActivity implements AdapterV
     private String pincode_text;
     private String connection_type_text;
     private String gender_text;
+    private String aadhar_text="";
+    private String profession_text="";
+    private String citizen_text="";
+    private String dob_text="";
+
+    private ProgressBar submitProfileProgress;
 
     private DatabaseReference UserDatabase;
     private FirebaseAuth mAuth;
@@ -83,7 +98,12 @@ public class SubmitProfileActivity extends AppCompatActivity implements AdapterV
         state = findViewById(R.id.address_state_name_field);
         pincode = findViewById(R.id.address_pincode_field);
         connection_type = findViewById(R.id.connection_type_toggle);
+//        aadhar = findViewById(R.id.profile_aadhar_text);
+//        profession = findViewById(R.id.profile_profession_text);
+//        citizen = findViewById(R.id.profile_citizen_text);
+//        Dob = findViewById(R.id.profile_Dob_text);
 
+        submitProfileProgress = findViewById(R.id.submit_profile_progress);
         submit_button = findViewById(R.id.profile_submit_button);
         submit_button.setOnClickListener(this);
 
@@ -130,6 +150,9 @@ public class SubmitProfileActivity extends AppCompatActivity implements AdapterV
     }
 
     private void submitProfile() {
+            submit_button.setVisibility(View.GONE);
+            submitProfileProgress.setVisibility(View.VISIBLE);
+
             phone_no_text = phone_no.getText().toString();
             consumer_no_text = consumer_no.getText().toString();
             email_text = email.getText().toString();
@@ -142,6 +165,10 @@ public class SubmitProfileActivity extends AppCompatActivity implements AdapterV
             state_text = state.getText().toString();
             pincode_text = pincode.getText().toString();
             connection_type_text = connection_type.getText().toString();
+//            aadhar_text = aadhar.getText().toString();
+//            profession_text= profession.getText().toString();
+//            citizen_text = citizen.getText().toString();
+//            dob_text = Dob.getText().toString();
 
             if(TextUtils.isEmpty(phone_no_text) ||
                     TextUtils.isEmpty(consumer_no_text) ||
@@ -163,17 +190,31 @@ public class SubmitProfileActivity extends AppCompatActivity implements AdapterV
 
 //                Toast.makeText(SubmitProfileActivity.this,"User ID created :  " + user_id ,Toast.LENGTH_SHORT).show();
 
+                Nominee nominee = new Nominee("","","","","");
+
+                BankDetails bankDetails = new BankDetails("","","","","");
 
                 Address address = new Address(city_text,flat_no_text,pincode_text,state_text,street_name_text);
-                User newUser = new User(address,connection_type_text,consumer_no_text,email_text,first_name_text,gender_text,last_name_text,middle_name_text,phone_no_text,user_id);
+                User newUser = new User(address,dob_text,aadhar_text,profession_text,citizen_text,connection_type_text,consumer_no_text,email_text,first_name_text,gender_text,last_name_text,middle_name_text,phone_no_text,user_id,nominee,bankDetails);
+
 
                 String key_email = email_text.replace('.','-');
-                UserDatabase.child("users").child(key_email).setValue(newUser);
+                UserDatabase.child("users").child(key_email).setValue(newUser).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            submitProfileProgress.setVisibility(View.GONE);
+                            startActivity(new Intent(SubmitProfileActivity.this,WelcomeActivity.class));
+                        }
 
-                Intent intent = new Intent(SubmitProfileActivity.this,WelcomeActivity.class);
-               // intent.putExtra("consumer_no",consumer_no_text);
-             //   Toast.makeText(SubmitProfileActivity.this,consumer_no_text,Toast.LENGTH_SHORT).show();
-                startActivity(intent);
+                        if (task.isCanceled()){
+                            submitProfileProgress.setVisibility(View.GONE);
+                            submit_button.setVisibility(View.VISIBLE);
+                            Toast.makeText(SubmitProfileActivity.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
 
             }
     }

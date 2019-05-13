@@ -13,9 +13,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,6 +56,8 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
     private TextView Drawer_Name;
     private TextView Drawer_consumer_no;
 
+    private ViewFlipper v_flipper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +82,13 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+
+        int images[]={R.drawable.gas_collage,R.drawable.mastercard,R.drawable.subsidy_give_up};
+        v_flipper = findViewById(R.id.main_activity_view_flipper);
+
+        for (int image:images){
+            flipperImages(image);
+        }
 
         navigation_view = findViewById(R.id.navigation_drawer);
         mHeaderView = navigation_view.getHeaderView(0);
@@ -204,5 +215,20 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
 
                 break;
         }
+    }
+
+    public void flipperImages(int image){
+        ImageView imageView = new ImageView(this);
+        imageView.setBackgroundResource(image);
+
+        v_flipper.addView(imageView);
+        v_flipper.setAutoStart(true);
+        v_flipper.setFlipInterval(4000);
+
+
+        v_flipper.setInAnimation(this,android.R.anim.slide_in_left);
+        v_flipper.setOutAnimation(this,android.R.anim.slide_out_right);
+
+
     }
 }

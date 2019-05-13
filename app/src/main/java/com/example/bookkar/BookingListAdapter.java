@@ -59,24 +59,29 @@ public class BookingListAdapter extends ArrayAdapter<Booking> {
         String diff = sdf.format(c.getTime());
         String book_date = booking.getBookingDate();
 
-        int val = stringCompare(diff,book_date);
+        int val = dateCompare(diff,book_date);
         String msg;
         if(val<0){
             msg = "";
+            Log.i("checking",val+msg );
         }
         else if(val<2){
             msg="PENDING";
+            Log.i("checking",val +msg );
         }
         else if(val<4){
             msg = "BOOKING CONFIRMED";
+            Log.i("checking",val +msg );
         }
 
         else if(val < 7){
             msg = "QUEUED FOR NEXT DELIVERY DATE";
+            Log.i("checking",val +msg );
         }
 
         else{
             msg = "DELIVERED";
+            Log.i("checking",val +msg );
         }
 
         if(val<7){
@@ -91,22 +96,25 @@ public class BookingListAdapter extends ArrayAdapter<Booking> {
         return listItem;
     }
 
-    public static int stringCompare(String str1, String str2)
+    public static int dateCompare(String str1, String str2)
     {
+        String[] date1 = str1.split("/");
+        String[] date2 = str2.split("/");
 
-        int l1 = str1.length();
-        int l2 = str2.length();
-//        int lmin = Math.min(l1, l2);
-        int diff = 0;
+        Log.i("checking",date1[0]+date1[1]+date1[2]);
+        Log.i("checking",date2[0]+date2[1]+date2[2]);
 
-        for (int i = 0; i < l1; i++) {
-            int str1_ch = (int)str1.charAt(i);
-            int str2_ch = (int)str2.charAt(i);
-
-            diff += str1_ch - str2_ch;
+        if (!(date1[2].equals(date1[2]))){
+            return 365;
         }
-            return diff;
+        else if(!(date1[1].equals(date2[1]))){
+            return 31;
+        }
 
+        int day1 = Integer.parseInt(date1[0]);
+        int day2 = Integer.parseInt(date2[0]);
+
+        return day1-day2;
     }
 }
 

@@ -2,22 +2,28 @@ package com.example.bookkar;
 
 public class User {
     private Address address;
+    private BankDetails bank;
+    private Nominee nominee;
     private String connection_type;
     private String consumer_no;
     private String email;
     private String first_name;
+    private String aadhar;
+    private String profession;
+    private String Citizen;
     private String gender;
     private String last_name;
     private String middle_name;
     private String phone_no;
     private String user_id;
-
+    private String dob;
 
     public User(){
 
     }
 
-    public User(Address address,String connection_type, String consumer_no, String email ,String first_name,  String gender, String last_name ,String middle_name,String phone_no, String user_id) {
+
+    public User(Address address,String dob,String aadhar,String profession,String citizen, String connection_type, String consumer_no, String email , String first_name, String gender, String last_name , String middle_name, String phone_no, String user_id, Nominee nominee, BankDetails bank) {
 
         this.user_id = user_id;
         this.phone_no = phone_no;
@@ -29,6 +35,44 @@ public class User {
         this.address = address;
         this.connection_type = connection_type;
         this.gender = gender;
+        this.bank = bank;
+        this.nominee = nominee;
+        this.aadhar = aadhar;
+        this.profession = profession;
+        this.Citizen = citizen;
+        this.dob = dob;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getAadhar() {
+        return aadhar;
+    }
+
+    public void setAadhar(String aadhar) {
+        this.aadhar = aadhar;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public void setProfession(String profession) {
+        this.profession = profession;
+    }
+
+    public String getCitizen() {
+        return Citizen;
+    }
+
+    public void setCitizen(String citizen) {
+        Citizen = citizen;
     }
 
     public String getUser_id(){
@@ -95,6 +139,22 @@ public class User {
         this.address = address;
     }
 
+
+    public BankDetails getBank() {
+        return bank;
+    }
+
+    public void setBank(BankDetails bank) {
+        this.bank = bank;
+    }
+
+    public Nominee getNominee() {
+        return nominee;
+    }
+
+    public void setNominee(Nominee nominee) {
+        this.nominee = nominee;
+    }
     public String getConnection_type() {
         return connection_type;
     }
@@ -169,5 +229,126 @@ class Address{
 
     public void setPincode(String pincode) {
         this.pincode = pincode;
+    }
+}
+
+class Nominee{
+     String fname;
+     String lname;
+     String age;
+     String gender;
+     String relation;
+
+     public Nominee(){
+
+     }
+
+     public Nominee(String fname,String lname,String age,String gender,String relation){
+         this.fname = fname;
+         this.lname = lname;
+         this.age = age;
+         this.gender = gender;
+         this.relation = relation;
+     }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+}
+
+class BankDetails{
+    String accountNo;
+    String bankName;
+    String bankBranch;
+    String ifsc_code;
+    String panCard;
+
+    public BankDetails(){
+
+    }
+
+    public BankDetails(String acc,String bank,String branch,String ifsc,String pan){
+            this.accountNo = acc;
+            this.bankBranch = branch;
+            this.bankName = bank;
+            this.ifsc_code = ifsc;
+            this.panCard = pan;
+    }
+
+    public String getAccountNo() {
+        return accountNo;
+    }
+
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBankBranch() {
+        return bankBranch;
+    }
+
+    public void setBankBranch(String bankBranch) {
+        this.bankBranch = bankBranch;
+    }
+
+    public String getIFSC_code() {
+        return ifsc_code;
+    }
+
+    public void setIFSC_code(String ifsc_code) {
+        this.ifsc_code = ifsc_code;
+    }
+
+    public String getPanCard() {
+        return panCard;
+    }
+
+    public void setPanCard(String panCard) {
+        this.panCard = panCard;
     }
 }
